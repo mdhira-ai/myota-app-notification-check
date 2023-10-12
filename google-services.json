@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "699059232236",
+    "project_id": "munotify-2be86",
+    "storage_bucket": "munotify-2be86.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:699059232236:android:61b56106ae368ef98134c9",
+        "android_client_info": {
+          "package_name": "com.mdhera211.myotaapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAu4CTM2m7W9CNGblIoIa6WQ7sKcOXRwxQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
