@@ -1,13 +1,16 @@
-import { View, Text } from 'react-native'
+import { View, Text, Pressable, Alert } from 'react-native'
 import React from 'react'
 import * as Notifications from 'expo-notifications';
+import axios from 'axios';
 
 export default function page() {
-  const [notification, setNotification] = React.useState(null);
+  const [notificationt, setNotification] = React.useState(null);
 
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
-      shouldShowAlert: true
+      shouldShowAlert: true,
+      shouldPlaySound: true,
+      shouldSetBadge: true,
     }),
   });
 
@@ -15,17 +18,78 @@ export default function page() {
     registerForPushNotificationsAsync().then(token =>
       setNotification(token)
     );
+
+
+
+  }, [
+    notificationt
+  ])
+
+
+  const url = 'https://exp.host/--/api/v2/push/send';
+  const data = {
+    to: 'ExponentPushToken[rjqn9UKS0d1uMNpz7xwtIJ]',
+    title: 'i am new user',
+    body: 'hello bro',
+    data:{
+      url:"/about",
+
+    }
+
+  };
+
+  const headers = {
+    'Content-Type': 'application/json',
+  };
+
+  function send() {
+    axios.post(url, data, { headers })
+      .then(response => {
+        console.log('Push notification sent successfully:', response.data);
+      })
+      .catch(error => {
+        console.error('Error sending push notification:', error);
+      });
   }
-    , [])
+
 
 
   return (
-    <View>
-      <Text>
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+
+    >
+      <Text
+
+      >
         {
-          notification
+          notificationt
         }
       </Text>
+
+      <Pressable
+        style={{
+          backgroundColor: "black",
+          padding: 10,
+          borderRadius: 10,
+          marginTop: 20,
+        }}
+
+        onPress={() => {
+          send();
+        }}
+      >
+        <Text
+          style={{
+            color: "white",
+            fontSize: 20,
+          }}
+        >Send notification someone</Text>
+      </Pressable>
     </View>
   )
 }
